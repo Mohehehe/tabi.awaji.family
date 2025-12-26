@@ -1,0 +1,505 @@
+<!-- メンバー画像の配置を一旦削除 -->
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>メンバーギャラリー</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        .center-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            height: 150vh; /* ページの縦の長さを増やす */
+            gap: 110px; /* 画像間の間隔を3倍に設定 */
+            position: relative;
+            padding-top: 100px;
+            background-image: url('haikei.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .center-container img {
+            width: 150px;
+            height: auto;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .center-container img:hover {
+            transform: scale(1.05);
+        }
+
+        .member3 {
+            position: absolute;
+            top: calc(50% - 350px); /* member1の左下の角とmember3の右上の角を合わせる */
+            left: calc(25% - 150px); /* 左にずらして重ならないように調整 */
+            width: 100px;
+            height: auto;
+        }
+
+        .member4 {
+            position: absolute;
+            top: calc(50% - 350px); /* member2の右下の角とmember4の左上の角を合わせる */
+            right: calc(25% - 150px); /* 右にずらして重ならないように調整 */
+            width: 100px;
+            height: auto;
+        }
+
+        .member5 {
+            position: absolute;
+            top: calc(50% - 150px); /* member4の右下の角とmember5の左上の角を合わせる */
+            right: calc(25% + 0px); /* さらに真横右に移動 */
+            width: 100px;
+            height: auto;
+        }
+
+        .member6 {
+            position: absolute;
+            top: calc(50% - 150px); /* member3の左下の角とmember6の右上の角を合わせる */
+            left: calc(25% - 15px); /* 今の2倍右に移動 */
+            width: 100px;
+            height: auto;
+        }
+
+        .member7 {
+            position: absolute;
+            top: calc(50% - 100px); /* member3の左下の角とmember6の右上の角を合わせる */
+            left: 50%; /* 中央に配置 */
+            margin-left: -50px; /* 完全に中央揃え */
+            width: 100px;
+            height: auto;
+        }
+
+        .new-section {
+            padding: 0px 20px;
+            text-align: center;
+        }
+
+        .slide-in-title {
+            font-size: 48px;
+            font-weight: bold;
+            color: #333;
+            opacity: 0;
+            transform: translateX(100%);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+
+        .slide-in-title.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* car画像のスライド（右→左に走って左側へ消える） */
+        .slide-car {
+            position: fixed;
+            top: 45%;
+            right: 0;
+            width: 300px;
+            max-width: 30vw;
+            transform: translateX(100vw); /* 画面右外に配置 */
+            transition: transform 2.4s ease-out;
+            z-index: 50;
+            pointer-events: none;
+        }
+
+        .slide-car.visible {
+            transform: translateX(-120vw); /* 画面左まで走って消える */
+        }
+
+        @media (max-width: 768px) {
+            .slide-car {
+                width: 160px;
+                top: 50%;
+                max-width: 40vw;
+            }
+        }
+
+        .bottom-images {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin-top: 40px;
+        }
+
+        .bottom-images img {
+            width: 200px;
+            height: auto;
+            cursor: pointer;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+        }
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            background: none;
+            border: none;
+            transition: color 0.3s;
+            z-index:1001
+        }
+
+        .close-btn:hover {
+            color: #ccc;
+        }
+
+        /* スマートフォン対応 */
+        @media (max-width: 768px) {
+            .center-container {
+                height: 150vh;
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 30px;
+                padding-top: 50px;
+                background-attachment: scroll;
+                align-items: flex-start;
+            }
+
+            .center-container img:nth-child(1),
+            .center-container img:nth-child(2) {
+                width: 130px;
+                height: auto;
+                position: relative;
+                top: auto;
+                left: auto;
+                right: auto;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .member3 {
+                position: absolute;
+                top: calc(50% - 250px);
+                left: calc(25% - 80px);
+                width: 80px;
+                height: auto;
+            }
+
+            .member4 {
+                position: absolute;
+                top: calc(50% - 250px);
+                right: calc(25% - 80px);
+                width: 50px;
+                height: auto;
+            }
+
+            .member5 {
+                position: absolute;
+                top: calc(50% - 0px);
+                right: calc(25% - 80px);
+                width: 80px;
+                height: auto;
+            }
+
+            .member6 {
+                position: absolute;
+                top: calc(50% - 0px);
+                left: calc(25% - 80px);
+                width: 80px;
+                height: auto;
+            }
+
+            .member7 {
+                position: absolute;
+                top: calc(50% + 200px);
+                left: 50%;
+                margin-left: -70px;
+                width: 80px;
+                height: auto;
+            }
+
+            .slide-in-title {
+                font-size: 28px;
+                transform: translateX(0);
+                opacity: 1;
+            }
+
+            .slide-in-title.visible {
+                opacity: 1;
+                transform: translateX(0);
+            }
+
+            .bottom-images {
+                flex-direction: row;
+                gap: 20px;
+                margin-top: 20px;
+                flex-wrap: wrap;
+            }
+
+            .bottom-images img {
+                width: 100px;
+                height: auto;
+            }
+
+            .new-section {
+                padding: 30px 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .center-container {
+                height: 150vh;
+                gap: 20px;
+                padding-top: 30px;
+            }
+
+            .center-container img:nth-child(1),
+            .center-container img:nth-child(2) {
+                width: 60px;
+                height: auto;
+            }
+
+            .member3 {
+                top: calc(50% - 150px);
+                left: calc(20% - 60px);
+                width: 60px;
+            }
+
+            .member4 {
+                top: calc(50% - 150px);
+                right: calc(20% - 60px);
+                width: 60px;
+            }
+
+            .member5 {
+                top: calc(50% - 40px);
+                right: calc(20% + 0px);
+                width: 60px;
+            }
+
+            .member6 {
+                top: calc(50% - 40px);
+                left: calc(20% - 15px);
+                width: 60px;
+            }
+
+            .member7 {
+                top: calc(50% - 10px);
+                left: 50%;
+                margin-left: -30px;
+                width: 60px;
+            }
+
+            .slide-in-title {
+                font-size: 20px;
+            }
+
+            .bottom-images img {
+                width: 80px;
+                height: auto;
+            }
+
+            .new-section {
+                padding: 20px 10px;
+            }
+        }
+
+        /* 縦画面スマホのみ：上部7画像を2列×4行レイアウト */
+        @media (max-width: 768px) and (orientation: portrait) {
+            .center-container {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                grid-auto-rows: auto;
+                gap: 12px;
+                height: auto;
+                padding-top: 20px;
+                background-attachment: scroll;
+                justify-items: center;
+            }
+
+            .center-container img {
+                width: 90%;
+                max-width: 180px;
+                height: auto;
+            }
+
+            /* 画像の順番はHTMLの順序（1〜7）に従います。absolute指定をリセット */
+            .member3, .member4, .member5, .member6, .member7 {
+                position: static;
+                top: auto;
+                left: auto;
+                right: auto;
+                margin: 0 auto;
+                z-index: auto;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <nav class="top-index">
+        <div class="menu">
+            <a href="member2.html">メンバー</a>
+            <a href="plan.html">旅行の計画</a>
+            <a href="awaji.html">淡路島のあれこれ</a>
+            <a href="hotel.html">旅館のあれこれ</a>
+            <a href="thanks.html">旅行の写真</a>
+            <a href="https://mohehehe.github.io/tabi.awaji.family/" class="home">Home</a>
+        </div>
+    </nav>
+    <div class="center-container">
+        <img src="member1.png" alt="メンバー1">
+        <img src="member2.png" alt="メンバー2">
+        <img src="member3.png" alt="メンバー3" class="member3">
+        <img src="member4.png" alt="メンバー4" class="member4">
+        <img src="member5.png" alt="メンバー5" class="member5">
+        <img src="member6.png" alt="メンバー6" class="member6">
+        <img src="member7.png" alt="メンバー7" class="member7">
+    </div>
+
+    <div class="new-section">
+        <h1 class="slide-in-title" id="slideTitle">旅行の主役!!</h1>
+        <div class="bottom-images">
+            <img src="member1.png" alt="メンバー1">
+            <img src="member2.png" alt="メンバー2">
+        </div>
+    </div>
+
+    <div class="new-section">
+        <h1 class="slide-in-title" id="slideTitle1">運転（メイン）お願いします!!</h1>
+        <div class="bottom-images">
+            <img src="member3.png" alt="メンバー3">
+            <img src="member4.png" alt="メンバー4">
+        </div>
+    </div>
+
+    <div class="new-section">
+        <h1 class="slide-in-title" id="slideTitle2">旅行の企画・計画</h1>
+        <div class="bottom-images">
+            <img src="member3.png" alt="メンバー3">
+            <img src="member5.png" alt="メンバー5">
+        </div>
+    </div>
+
+    <div id="modal" class="modal">
+        <button class="close-btn" id="closeBtn">×</button>
+        <img class="modal-content" id="modalImage">
+    </div>
+
+    <!-- 右から左へ走って左側へ消える車画像 -->
+    <img src="car.png" id="car" class="slide-car" alt="car">
+
+    <script>
+        const modal = document.getElementById('modal');
+        const modalImg = document.getElementById('modalImage');
+        const closeBtn = document.getElementById('closeBtn');
+
+        // 画像クリックイベント
+        const images = document.querySelectorAll('img[alt*="メンバー"]');
+        images.forEach(img => {
+            img.addEventListener('click', function() {
+                modal.classList.add('active');
+                modalImg.src = this.src;
+            });
+        });
+
+        // 閉じるボタンのクリックイベント
+        closeBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            modal.classList.remove('active');
+            return false;
+        });
+
+        // モーダル背景のクリックイベント
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal || e.target === modalImg) {
+                modal.classList.remove('active');
+            }
+        });
+
+        // Escキーで閉じる
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                modal.classList.remove('active');
+            }
+        });
+
+        // スクロールアニメーション
+        function checkScroll() {
+            const slideTitle = document.getElementById('slideTitle');
+            const slideTitle1 = document.getElementById('slideTitle1');
+            const slideTitle2 = document.getElementById('slideTitle2');
+            const car = document.getElementById('car');
+
+            if (!slideTitle || !slideTitle1 || !slideTitle2 || !car) {
+                return;
+            }
+
+            const title1Position = slideTitle.getBoundingClientRect().top;
+            const title2Position = slideTitle1.getBoundingClientRect().top;
+            const title3Position = slideTitle2.getBoundingClientRect().top;
+            const screenPosition = window.innerHeight;
+
+            let anyVisible = false;
+
+            if (title1Position < screenPosition) {
+                slideTitle.classList.add('visible');
+                anyVisible = true;
+            }
+            if (title2Position < screenPosition) {
+                slideTitle1.classList.add('visible');
+                anyVisible = true;
+            }
+            if (title3Position < screenPosition) {
+                slideTitle2.classList.add('visible');
+                anyVisible = true;
+            }
+
+            // 文字とは別に、carは右から入って左へ消えるアニメーション
+            if (anyVisible) {
+                car.classList.add('visible');
+            } else {
+                car.classList.remove('visible');
+            }
+        }
+
+        window.addEventListener('scroll', checkScroll);
+        
+        // ページ読み込み完了後に実行
+        window.addEventListener('load', function() {
+            setTimeout(checkScroll, 100);
+            setTimeout(checkScroll, 500);
+        });
+    </script>
+        </script>
+        <style>
+            /* Top index nav — orange palette */
+            .top-index{background:#fff4e6;padding:8px 12px;border-bottom:2px solid #ffd8b3;position:sticky;top:0;z-index:999}
+            .top-index .menu{max-width:980px;margin:0 auto;display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:center}
+            .top-index a{display:inline-block;padding:6px 10px;border-radius:8px;text-decoration:none;color:#7a3b00;background:rgba(255,242,230,0.8);font-weight:700}
+            .top-index a.home{background:#ff7a00;color:#fff}
+            .top-index a:hover{transform:translateY(-2px);box-shadow:0 6px 12px rgba(255,138,0,0.12)}
+        </style>
+</body>
+</html>

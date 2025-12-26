@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>メンバー紹介</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            font-size: 28px;
+            margin-bottom: 40px;
+        }
+        .member {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        .member img {
+            border-radius: 50%;
+            margin-right: 20px;
+        }
+        .member-info {
+            flex: 1;
+        }
+        .member-info h2 {
+            margin: 0;
+            font-size: 22px;
+        }
+        .member-info p {
+            margin: 5px 0;
+        }
+        .highlight-text {
+            display: inline-block;
+            border: 2px solid black;
+            padding: 20px;
+            font-size: 5vw;
+            font-weight: bold;
+            white-space: nowrap;
+            transition: transform 0.3s ease;
+            position: relative;
+            cursor: pointer;
+            color: black; /* 文字色を黒に設定 */
+            text-decoration: none; /* リンクの下線を削除 */
+        }
+
+        .highlight-text:hover {
+            transform: scale(1.1);
+        }
+
+        .click-icon {
+            position: absolute;
+            bottom: -40px; /* さらに右下にずらす */
+            right: -40px; /* さらに右下にずらす */
+            width: 100px; /* 2倍の大きさを維持 */
+            height: auto;
+        }
+
+        .click-text {
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            color: red;
+            font-size: 32px; /* 2倍の大きさに拡大 */
+            font-weight: bold;
+            transform: rotate(-30deg); /* 左回りに30°傾ける */
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- メンバー紹介ページ -->
+    <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh;">
+        <img src="awaji1.jpg" alt="上部画像" style="max-width: 100%; height: auto; margin-bottom: 20px;">
+        <a href="member2.html" class="highlight-text">
+            <span class="click-text">CLICK!!</span>
+            メンバーを紹介します
+            <img src="click.png" alt="クリックアイコン" class="click-icon">
+        </a>
+        <img src="awaji2.jpg" alt="下部画像" style="max-width: 100%; height: auto; margin-top: 20px;">
+    </div>
+
+    <!-- メンバー情報は一時的に削除 -->
+
+    <!-- 追加のメンバー情報も同様にここに追加 -->
+
+</div>
+
+</body>
+</html>

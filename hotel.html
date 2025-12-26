@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="ja">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>Awaji International Hotel The Sunplaza</title>
+	<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Noto+Sans+JP:wght@300;400;700&display=swap" rel="stylesheet">
+	<style>
+		:root{--bg:#0b0b0b;--card:#faf8f5;--gold:#b9974a;--muted:#6b6b6b}
+		html,body{height:100%;margin:0;font-family:'Noto Sans JP',sans-serif;background:linear-gradient(180deg,#050505 0%,#0b0b0b 100%);color:#111}
+		.wrap{max-width:980px;margin:36px auto;padding:28px;background:linear-gradient(180deg,var(--card),#fff);border-radius:12px;box-shadow:0 10px 40px rgba(6,6,6,0.6);}
+		.hero{position:relative;border-radius:10px;overflow:hidden}
+		.hero img{width:100%;height:340px;object-fit:cover;display:block}
+		.hero .overlay{position:absolute;left:0;right:0;bottom:0;padding:28px;background:linear-gradient(180deg,transparent,rgba(0,0,0,0.45));color:#fff}
+		h1{font-family:'Playfair Display',serif;margin:0;font-size:28px;color:#111}
+		.tag{display:inline-block;padding:6px 12px;background:linear-gradient(90deg,var(--gold),#f0d29b);color:#2b1f0f;border-radius:20px;font-weight:700;margin-top:8px}
+		.content{display:grid;grid-template-columns:1fr;gap:18px;margin-top:20px}
+		.section{padding:18px;border-radius:8px;background:#fff}
+		.section h2{margin:0 0 8px 0;font-family:'Playfair Display',serif;color:#2b2b2b}
+		.row{display:flex;gap:18px;align-items:start}
+		.col{flex:1}
+		ul{margin:8px 0 0 18px;color:var(--muted)}
+		.cta{display:inline-block;margin-top:14px;padding:12px 20px;border-radius:8px;background:var(--gold);color:#2b1f0f;font-weight:700;text-decoration:none}
+		footer{margin-top:18px;text-align:center;color:var(--muted);font-size:14px}
+		@media(min-width:880px){.content{grid-template-columns:1fr 340px}.hero img{height:420px}}
+		/* Top index nav — orange palette */
+		.top-index{background:#fff4e6;padding:8px 12px;border-bottom:2px solid #ffd8b3;position:sticky;top:0;z-index:999}
+		.top-index .menu{max-width:980px;margin:0 auto;display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:center}
+		.top-index a{display:inline-block;padding:6px 10px;border-radius:8px;text-decoration:none;color:#7a3b00;background:rgba(255,242,230,0.8);font-weight:700}
+		.top-index a.home{background:#ff7a00;color:#fff}
+		.top-index a:hover{transform:translateY(-2px);box-shadow:0 6px 12px rgba(255,138,0,0.12)}
+	</style>
+</head>
+<body>
+	<nav class="top-index">
+		<div class="menu">
+			<a href="member2.html">メンバー</a>
+			<a href="plan.html">旅行の計画</a>
+			<a href="awaji.html">淡路島のあれこれ</a>
+			<a href="hotel.html">旅館のあれこれ</a>
+			<a href="thanks.html">旅行の写真</a>
+			<a href="outline.html" class="home">Home</a>
+		</div>
+	</nav>
+	<main class="wrap">
+		<header class="hero">
+			<img src="hotelguide.png" alt="Awaji International Hotel The Sunplaza - ホテルガイド">
+			<div class="overlay">
+				<div class="tag">Awaji International Hotel</div>
+				<h1>The Sunplaza — くつろぎと格調のある滞在</h1>
+				<p style="margin:8px 0 0;color:rgba(255,255,255,0.9)">淡路島の海と自然に寄り添う、上質なサービスと落ち着いた空間。</p>
+			</div>
+		</header>
+
+		<section class="content">
+			<article class="section">
+				<h2>ホテル概要</h2>
+				<p>Awaji International Hotel The Sunplazaは、淡路島の自然が育む静けさと、行き届いたホスピタリティを兼ね備えたリゾートホテルです。高級感あるインテリアと、海を望む客室、旬の食材を活かしたダイニングをお楽しみいただけます。</p>
+
+				<div class="row" style="margin-top:12px">
+					<div class="col">
+						<h3 style="margin:0;font-size:16px">主な設備</h3>
+						<ul>
+							<li>海一望の客室（スイート含む）</li>
+							<li>温泉／大浴場、スパ、フィットネス</li>
+							<li>オールデイダイニング＆バー</li>
+							<li>会議・宴会施設、ウェディング</li>
+						</ul>
+					</div>
+					<div class="col">
+						<h3 style="margin:0;font-size:16px">おすすめポイント</h3>
+						<ul>
+							<li>落ち着いたデザインの客室とラグジュアリーな共用空間</li>
+							<li>地元食材を活かした季節のコース料理</li>
+							<li>島内観光やビジネス利用にも便利な立地</li>
+						</ul>
+					</div>
+				</div>
+
+				<a class="cta" href="#reserve">ご予約・お問い合わせ</a>
+			</article>
+
+			<aside class="section">
+				<h2>客室タイプ</h2>
+				<p style="margin:6px 0">スタンダードからスイートまで、落ち着いた調度で統一された客室をご用意しています。</p>
+				<ul>
+					<li>スタンダードツイン / ダブル</li>
+					<li>デラックスルーム（海側）</li>
+					<li>スイートルーム（専用ラウンジあり）</li>
+				</ul>
+
+				<h2 style="margin-top:14px">アクセス</h2>
+				<p style="margin:6px 0">神戸淡路鳴門自動車道 経由でのアクセスが便利。最寄り駅・港からの送迎もご相談ください。</p>
+
+				<h2 style="margin-top:14px">連絡先</h2>
+				<p style="margin:6px 0">電話: 0799-XX-XXXX<br>住所: 兵庫県淡路市〜〜</p>
+			</aside>
+		</section>
+
+		<footer>
+			© Awaji International Hotel The Sunplaza — ご滞在を心よりお待ちしております。
+		</footer>
+	</main>
+</body>
+</html>
+

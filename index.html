@@ -164,26 +164,47 @@
             .hero-title{font-size:clamp(22px,10vw,48px)}
             .onion{width:22%}
         }
-        /* スマホ向け：左列に「メンバー・旅行の計画」、右列に残り3つを配置 */
+        /* スマホ向け：全て縦一列に並べ、円内の文字がはみ出さないように調整 */
         @media (max-width: 600px) {
             .circle-menu {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                gap: 8px;
-                justify-items: center;
-                align-items: start;
+                display: flex;
+                flex-direction: column;
+                gap: 14px;
                 width: 100%;
+                align-items: center;
+                padding: 12px 0;
             }
-            /* .row をレイアウトから除外してアンカーを直下要素扱いにする */
+            /* .row は各アイテムを縦に並べるためのラッパーとして縦方向にする */
             .row {
-                display: contents;
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+                width: 100%;
+                align-items: center;
             }
-            .circle-menu a { justify-self: center; }
-            .circle-menu a:nth-of-type(1) { grid-column: 1; grid-row: 1; }
-            .circle-menu a:nth-of-type(2) { grid-column: 1; grid-row: 2; }
-            .circle-menu a:nth-of-type(3) { grid-column: 2; grid-row: 1; }
-            .circle-menu a:nth-of-type(4) { grid-column: 2; grid-row: 2; }
-            .circle-menu a:nth-of-type(5) { grid-column: 2; grid-row: 3; }
+            /* 各メニューアイテムを正方形にして中央寄せ、テキストの折返しと切り捨てを制御 */
+            .menu-item {
+                width: 96px;
+                height: 96px;
+                line-height: normal;
+                font-size: 14px;
+                padding: 8px;
+                box-sizing: border-box;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                white-space: normal;
+                word-break: break-word;
+                overflow: hidden;
+            }
+            /* テキスト用のクラスがある場合も同様に中央寄せ */
+            .menu-item.text-content { font-size: 14px; }
+        }
+
+        /* 極小スマホ向けの微調整 */
+        @media (max-width: 420px){
+            .menu-item{width:84px;height:84px;font-size:13px;padding:6px}
         }
     </style>
 </head>

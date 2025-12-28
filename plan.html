@@ -27,6 +27,10 @@
     .card:first-of-type:hover .snake{animation:snakeMove 3s linear forwards;opacity:1}
     .card.card-jan1:hover .uma{animation:umaRun 2s linear forwards;opacity:1}
 
+    /* Start animations when the card has the `.animate` class (used for scroll/mobile) */
+    .card.animate .snake{animation:snakeMove 3s linear forwards;opacity:1}
+    .card.card-jan1.animate .uma{animation:umaRun 2s linear forwards;opacity:1}
+
     .uma{position:absolute;top:20px;left:100%;width:140px;pointer-events:none;opacity:0;transform:translateX(0) translateY(0);filter:drop-shadow(0 6px 8px rgba(0,0,0,0.12));z-index:4}
 
     @keyframes umaRun{
@@ -300,6 +304,26 @@
       <footer>良い旅を！ — 1/2 のしおり</footer>
     </div>
   </div>
+
+  <script>
+document.addEventListener('DOMContentLoaded', function() {
+  // 監視対象: .card（アニメーション対象の親）
+  const cards = document.querySelectorAll('.card');
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate');
+        }
+      });
+    }, { threshold: 0.3 });
+    cards.forEach(card => observer.observe(card));
+  } else {
+    // Fallback: 全てに即時付与
+    cards.forEach(card => card.classList.add('animate'));
+  }
+});
+</script>
 </body>
 </html>
 

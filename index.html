@@ -13,6 +13,27 @@
             background-color: #f4a460; /* サンドブラウン（オレンジっぽい茶色） */
             color: #5c4033; /* ダークブラウン */
             overflow-y: auto; /* 縦スクロールを有効化 */
+            position: relative;
+        }
+
+        /* 背景にuma2.pngを透明度高めで敷く */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: url('uma2.png') center center no-repeat;
+            background-size: 120vw auto;
+            opacity: 0.18;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        body > * {
+            position: relative;
+            z-index: 1;
         }
 
         .onion {

@@ -16,8 +16,9 @@
     .timeline{margin-top:14px}
     /* 各項目を縦に並べ、時間を上、予定をその下に中央揃えで表示 */
     .item{display:flex;flex-direction:column;align-items:center;gap:12px;padding:12px 8px;border-radius:10px}
-    .time{font-weight:700;color:var(--accent);background:linear-gradient(120deg,#fff,#fff8fb);border-radius:8px;padding:8px 12px;display:inline-block;font-size:22px;text-align:center}
-    .activity{background:linear-gradient(180deg,#fff,#fff);padding:10px 14px;border-radius:10px;border:1px solid rgba(0,0,0,0.03);text-align:center;width:100%;box-sizing:border-box}
+    /* Remove colored boxes around time and activity */
+    .time{font-weight:700;color:var(--accent);background:transparent;border-radius:0;padding:4px 0;display:block;font-size:22px;text-align:center}
+    .activity{background:transparent;padding:6px 0;border-radius:0;border:none;text-align:center;width:100%;box-sizing:border-box}
     .small{font-size:14px;color:#555;margin-top:6px}
     .note{font-size:13px;color:#8a6f7f}
     .sticker{font-size:22px;margin-right:8px}

@@ -1,125 +1,309 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ja">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width,initial-scale=1">
-	<title>Awaji International Hotel The Sunplaza</title>
-	<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Noto+Sans+JP:wght@300;400;700&display=swap" rel="stylesheet">
-	<style>
-		:root{--bg:#0b0b0b;--card:#faf8f5;--gold:#b9974a;--muted:#6b6b6b}
-		html,body{height:100%;margin:0;font-family:'Noto Sans JP',sans-serif;background:linear-gradient(180deg,#050505 0%,#0b0b0b 100%);color:#111}
-		.wrap{max-width:980px;margin:36px auto;padding:28px;background:linear-gradient(180deg,var(--card),#fff);border-radius:12px;box-shadow:0 10px 40px rgba(6,6,6,0.6);}
-		.hero{position:relative;border-radius:10px;overflow:hidden}
-		.hero img{width:100%;height:340px;object-fit:cover;display:block}
-		.hero .overlay{position:absolute;left:0;right:0;bottom:0;padding:28px;background:linear-gradient(180deg,transparent,rgba(0,0,0,0.45));color:#fff}
-		h1{font-family:'Playfair Display',serif;margin:0;font-size:28px;color:#111}
-		.tag{display:inline-block;padding:6px 12px;background:linear-gradient(90deg,var(--gold),#f0d29b);color:#2b1f0f;border-radius:20px;font-weight:700;margin-top:8px}
-		.content{display:grid;grid-template-columns:1fr;gap:18px;margin-top:20px}
-		.section{padding:18px;border-radius:8px;background:#fff}
-		.section h2{margin:0 0 8px 0;font-family:'Playfair Display',serif;color:#2b2b2b}
-		.row{display:flex;gap:18px;align-items:start}
-		.col{flex:1}
-		ul{margin:8px 0 0 18px;color:var(--muted)}
-		.cta{display:inline-block;margin-top:14px;padding:12px 20px;border-radius:8px;background:var(--gold);color:#2b1f0f;font-weight:700;text-decoration:none}
-		footer{margin-top:18px;text-align:center;color:var(--muted);font-size:14px}
-		@media(min-width:880px){.content{grid-template-columns:1fr 340px}.hero img{height:420px}}
-		/* Top index nav — orange palette */
-		.top-index{background:#fff4e6;padding:8px 12px;border-bottom:2px solid #ffd8b3;position:sticky;top:0;z-index:999}
-		.top-index .menu{max-width:980px;margin:0 auto;display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:center}
-		.top-index a{display:inline-block;padding:6px 10px;border-radius:8px;text-decoration:none;color:#7a3b00;background:rgba(255,242,230,0.8);font-weight:700}
-		.top-index a.home{background:#ff7a00;color:#fff}
-		.top-index a:hover{transform:translateY(-2px);box-shadow:0 6px 12px rgba(255,138,0,0.12)}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>旅館のあれこれ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kosugi+Maru&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #d2691e;
+            --accent: #cd853f;
+            --bg-color: #fff4e6;
+            --paper: #fffefc;
+            --text: #5c4033;
+        }
 
-		/* Responsive tweaks */
-		@media (max-width:880px){
-			.wrap{margin:18px;padding:18px}
-			.hero img{height:auto}
-			h1{font-size:20px}
-			.tag{font-size:14px;padding:6px 10px}
-			.row{flex-direction:column;gap:12px}
-			.content{grid-template-columns:1fr}
-			.top-index .menu{gap:6px;padding:6px}
-			.top-index a{font-size:13px;padding:6px 8px}
-		}
+        body {
+            font-family: 'Kosugi Maru', sans-serif;
+            background-color: var(--bg-color);
+            background-image: linear-gradient(#fff4e6, #fff);
+            margin: 0;
+            padding: 0;
+            color: var(--text);
+            min-height: 100vh;
+        }
 
-		@media (max-width:420px){
-			.wrap{padding:12px;margin:12px}
-			h1{font-size:18px}
-			.tag{font-size:12px}
-			.footer{font-size:13px}
-		}
-	</style>
+        /* ナビゲーション */
+        .top-index {
+            background: #fff4e6;
+            padding: 8px 12px;
+            border-bottom: 2px solid #ffd8b3;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+        }
+        .top-index .menu {
+            max-width: 980px;
+            margin: 0 auto;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+        }
+        .top-index a {
+            display: inline-block;
+            padding: 6px 10px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #7a3b00;
+            background: rgba(255, 242, 230, 0.8);
+            font-weight: 700;
+            font-size: 14px;
+        }
+        .top-index a.home {
+            background: #ff7a00;
+            color: #fff;
+        }
+
+        .wrap {
+            max-width: 820px;
+            margin: 20px auto;
+            padding: 0 12px;
+        }
+
+        .card {
+            background: var(--paper);
+            border-radius: 16px;
+            padding: 26px;
+            border: 4px dashed rgba(210, 105, 30, 0.3);
+            box-shadow: 0 8px 24px rgba(92, 64, 51, 0.08);
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            color: var(--primary);
+            text-align: center;
+            font-size: 26px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #ffe6cc;
+            padding-bottom: 10px;
+        }
+
+        .intro-text {
+            text-align: center;
+            font-weight: bold;
+            color: #d2691e;
+            font-size: 1.1em;
+            margin: 20px 0;
+        }
+
+        /* セクションごとの枠 */
+        .section-block {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #ffe6cc;
+        }
+        .section-block:last-child {
+            border-bottom: none;
+        }
+
+        /* タップできる見出し */
+        .toggle-header {
+            color: var(--accent);
+            font-size: 20px;
+            background: #fff8f0;
+            padding: 12px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: background 0.2s;
+            user-select: none;
+            border: 1px solid #ffe6cc;
+            margin-bottom: 15px;
+        }
+
+        .toggle-header:hover {
+            background: #ffe0b2;
+        }
+
+        .toggle-header::after {
+            content: '';
+            font-size: 18px;
+            transition: transform 0.3s;
+        }
+
+        /* 写真エリア（最初は隠す） */
+        .hidden-photo {
+            display: none;
+            margin: 10px 0 20px 0;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .hidden-photo img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 説明文（常に表示） */
+        .description h3 {
+            color: var(--primary);
+            margin: 0 0 10px 0;
+            font-size: 18px;
+            border-left: 4px solid var(--accent);
+            padding-left: 10px;
+        }
+
+        .description p {
+            line-height: 1.8;
+            margin: 0;
+            font-size: 16px;
+        }
+
+        .btn-link {
+            display: block;
+            background-color: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 15px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            margin: 40px auto 20px;
+            max-width: 300px;
+            box-shadow: 0 4px 10px rgba(210, 105, 30, 0.3);
+            transition: transform 0.2s;
+        }
+
+        @media (max-width: 820px) {
+            .top-index .menu { gap: 6px; padding: 6px; }
+            .top-index a { font-size: 12px; padding: 6px 8px; }
+            h1 { font-size: 22px; }
+            .card { padding: 18px; }
+        }
+    </style>
 </head>
 <body>
-	<nav class="top-index">
-		<div class="menu">
-			<a href="member2.html">メンバー</a>
-			<a href="plan.html">旅行の計画</a>
-			<a href="awaji.html">淡路島のあれこれ</a>
-			<a href="hotel.html">旅館のあれこれ</a>
-			<a href="thanks.html">旅行の写真</a>
-			<a href="https://mohehehe.github.io/tabi.awaji.family/" class="home">Home</a>
-		</div>
-	</nav>
-	<main class="wrap">
-		<header class="hero">
-			<img src="hotelguide.png" alt="Awaji International Hotel The Sunplaza - ホテルガイド">
-			<div class="overlay">
-				<div class="tag">Awaji International Hotel</div>
-				<h1>The Sunplaza — くつろぎと格調のある滞在</h1>
-				<p style="margin:8px 0 0;color:rgba(255,255,255,0.9)">淡路島の海と自然に寄り添う、上質なサービスと落ち着いた空間。</p>
-			</div>
-		</header>
+    <nav class="top-index">
+        <div class="menu">
+            <a href="member2.html">メンバー</a>
+            <a href="plan.html">旅行の計画</a>
+            <a href="awaji.html">淡路島のあれこれ</a>
+            <a href="hotel.html">旅館のあれこれ</a>
+            <a href="thanks.html">旅行の写真</a>
+            <a href="https://mohehehe.github.io/tabi.awaji.family/" class="home">Home</a>
+        </div>
+    </nav>
 
-		<section class="content">
-			<article class="section">
-				<h2>ホテル概要</h2>
-				<p>Awaji International Hotel The Sunplazaは、淡路島の自然が育む静けさと、行き届いたホスピタリティを兼ね備えたリゾートホテルです。高級感あるインテリアと、海を望む客室、旬の食材を活かしたダイニングをお楽しみいただけます。</p>
+    <div class="wrap">
+        <div class="card">
+            <h1>淡路インターナショナルホテル<br>ザ・サンプラザ</h1>
+           
+            <img src="hotelguide.png" alt="旅館の外観" style="width: 100%; height: auto; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin-bottom: 20px;">
+           
+            <p class="intro-text">
+                全室オーシャンビュー！<br>
+                波音を聞きながら過ごす、至福の休日。
+            </p>
 
-				<div class="row" style="margin-top:12px">
-					<div class="col">
-						<h3 style="margin:0;font-size:16px">主な設備</h3>
-						<ul>
-							<li>海一望の客室（スイート含む）</li>
-							<li>温泉／大浴場、スパ、フィットネス</li>
-							<li>オールデイダイニング＆バー</li>
-							<li>会議・宴会施設、ウェディング</li>
-						</ul>
-					</div>
-					<div class="col">
-						<h3 style="margin:0;font-size:16px">おすすめポイント</h3>
-						<ul>
-							<li>落ち着いたデザインの客室とラグジュアリーな共用空間</li>
-							<li>地元食材を活かした季節のコース料理</li>
-							<li>島内観光やビジネス利用にも便利な立地</li>
-						</ul>
-					</div>
-				</div>
+            <div class="section-block">
+                <h2 class="toggle-header" onclick="togglePhoto('photo-onsen')"> 絶景の温泉（タップで写真）</h2>
+               
+                <div id="photo-onsen" class="hidden-photo">
+                    <img src="onsen.jpg" alt="温泉の写真">
+                    <p style="font-size:12px; text-align:center; color:#999; margin-top:5px;">※写真はイメージです</p>
+                   
+                    <p style="text-align: center; background: #fff5f5; padding: 10px; border-radius: 8px; border: 1px solid #ffcccc; color: #c00; font-size: 0.9em; line-height: 1.6; font-weight: bold;">
+                        ＊注意＊<br>
+                        展望大浴場のみ利用時間あり<br>
+                        利用時間：男女入れ替え制<br>
+                        男性：5：30～8：30<br>
+                        女性：15：00～22：00
+                    </p>
+                </div>
 
-				<a class="cta" href="#reserve">ご予約・お問い合わせ</a>
-			</article>
+                <div class="description">
+                    <h3>展望大浴場</h3>
+                    <p>
+                        洲本温泉うるおいの湯を使っています。<br>
+                        紀淡海峡を望みながら、開放感のある展望大浴場「遊湯」でリラクゼーションタイムをお過ごしください。<br>
+                        特に男性の方は朝風呂はおすすめ！水平線から昇る朝日を眺めながらの入浴は、まさに神々しい体験。<b>早起きして</b>、日頃の疲れを波の音と共に溶かしましょう。<br>
+                        <br>
+                    </p>
+                </div>
 
-			<aside class="section">
-				<h2>客室タイプ</h2>
-				<p style="margin:6px 0">スタンダードからスイートまで、落ち着いた調度で統一された客室をご用意しています。</p>
-				<ul>
-					<li>スタンダードツイン / ダブル</li>
-					<li>デラックスルーム（海側）</li>
-					<li>スイートルーム（専用ラウンジあり）</li>
-				</ul>
+                <div class="description">
+                    <h3>大浴場</h3>
+                    <p>
+                        大浴場では、広々とした空間で心も体もゆったりとおくつろぎいただけます。<br>
+                        設備も充実しており、サウナ,打たせ湯,気泡風呂,露天風呂と日常のストレスから解き放たれる至福の時間をお過ごしください。<br>
+                        <br>
+                    </p>
+                </div>
 
-				<h2 style="margin-top:14px">アクセス</h2>
-				<p style="margin:6px 0">神戸淡路鳴門自動車道 経由でのアクセスが便利。最寄り駅・港からの送迎もご相談ください。</p>
+                <div class="description">
+                    <h3>Japanese 温泉</h3>
+                    <p>
+                        <strong>洲本温泉うるおいの湯</strong><br>
+                        腰痛症、神経痛、五十肩、打撲、捻挫、胃腸機能の低下、軽症高血圧、糖尿病、痔、ストレスによる諸症状、病後回復期、疲労回復、健康促進など様々な効能があります。<br>
+                       
+                    </p>
+                </div>
 
-				<h2 style="margin-top:14px">連絡先</h2>
-				<p style="margin:6px 0">電話: 0799-XX-XXXX<br>住所: 兵庫県淡路市〜〜</p>
-			</aside>
-		</section>
+            </div>
 
-		<footer>
-			© Awaji International Hotel The Sunplaza — ご滞在を心よりお待ちしております。
-		</footer>
-	</main>
+            <div class="section-block">
+                <h2 class="toggle-header" onclick="togglePhoto('photo-food')"> 淡路の美食（タップで写真）</h2>
+               
+                <div id="photo-food" class="hidden-photo">
+                    <img src="food.jpg" alt="料理の写真">
+                    <p style="font-size:12px; text-align:center; color:#999; margin-top:5px;">※写真はイメージです</p>
+                </div>
+
+                <div class="description">
+                    <h3>御食国（みけつくに）の恵み</h3>
+                    <p>
+                        古くから皇室に食材を献上してきた「食の宝庫」淡路島。<br>
+                        冬の味覚の王様「3年とらふぐ」や、甘くて柔らかい「淡路島玉ねぎ」、そして新鮮な魚介類。<br>
+                        地元の旬の素材を活かした会席料理は、目でも舌でも楽しめる芸術品です。
+                    </p>
+                </div>
+            </div>
+
+            <div class="section-block">
+                <h2 class="toggle-header" onclick="togglePhoto('photo-room')"> お部屋と施設（タップで写真）</h2>
+               
+                <div id="photo-room" class="hidden-photo">
+                    <img src="room.jpg" alt="部屋の写真">
+                    <p style="font-size:12px; text-align:center; color:#999; margin-top:5px;">※写真はイメージです</p>
+                </div>
+
+                <div class="description">
+                    <h3>全室オーシャンビューの贅沢</h3>
+                    <p>
+                        お部屋に入った瞬間、窓いっぱいに広がる青い海。<br>
+                        和の寛ぎと、リゾートの開放感が融合した空間です。<br>
+                        館内には広々としたロビーや売店も完備。お土産選びもゆっくり楽しめます。
+                        「何もしない贅沢」をここで味わいましょう。
+                    </p>
+                </div>
+            </div>
+
+            <a href="https://www.the-sunplaza.co.jp/" target="_blank" class="btn-link">公式サイトを見る</a>
+           
+        </div>
+    </div>
+
+    <script>
+        function togglePhoto(id) {
+            var photoDiv = document.getElementById(id);
+            // 表示状態を切り替え
+            if (photoDiv.style.display === "block") {
+                photoDiv.style.display = "none";
+            } else {
+                photoDiv.style.display = "block";
+            }
+        }
+    </script>
 </body>
 </html>
-

@@ -1,54 +1,194 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ja">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width,initial-scale=1">
-	<title>編集メモ</title>
-	<link href="https://fonts.googleapis.com/css2?family=Kosugi+Maru&display=swap" rel="stylesheet">
-	<style>
-		:root{--accent:#d65a8d}
-		html,body{height:100%}
-		body{margin:0;font-family:'Kosugi Maru',sans-serif;display:flex;align-items:center;justify-content:center;background:linear-gradient(#fbfdff,#f7fbf9);padding:24px}
-		.message{font-weight:700;color:var(--accent);text-align:center;line-height:1.2;padding:18px 22px;background:rgba(255,255,255,0.9);border-radius:12px;box-shadow:0 8px 20px rgba(0,0,0,0.06)}
-		.message span{display:block;font-size:clamp(28px,6vw,68px)}
-		.sub{display:block;margin-top:10px;font-size:clamp(14px,3vw,20px);color:#666666;font-weight:500}
-	</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>旅行の写真</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kosugi+Maru&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* 共通のデザインテーマ */
+        :root {
+            --primary: #d2691e;
+            --accent: #cd853f;
+            --bg-color: #fff4e6;
+            --paper: #fffefc;
+            --text: #5c4033;
+        }
+
+        body {
+            font-family: 'Kosugi Maru', sans-serif;
+            background-color: var(--bg-color);
+            background-image: linear-gradient(#fff4e6, #fff);
+            margin: 0;
+            padding: 0;
+            color: var(--text);
+            min-height: 100vh;
+        }
+
+        /* ナビゲーション */
+        .top-index {
+            background: #fff4e6;
+            padding: 8px 12px;
+            border-bottom: 2px solid #ffd8b3;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+        }
+        .top-index .menu {
+            max-width: 980px;
+            margin: 0 auto;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+        }
+        .top-index a {
+            display: inline-block;
+            padding: 6px 10px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #7a3b00;
+            background: rgba(255, 242, 230, 0.8);
+            font-weight: 700;
+            font-size: 14px;
+        }
+        .top-index a.home {
+            background: #ff7a00;
+            color: #fff;
+        }
+
+        /* メインコンテンツ */
+        .wrap {
+            max-width: 820px;
+            margin: 20px auto;
+            padding: 0 12px;
+        }
+
+        .card {
+            background: var(--paper);
+            border-radius: 16px;
+            padding: 26px;
+            border: 4px dashed rgba(210, 105, 30, 0.3);
+            box-shadow: 0 8px 24px rgba(92, 64, 51, 0.08);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        h1 {
+            color: var(--primary);
+            font-size: 26px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #ffe6cc;
+            padding-bottom: 10px;
+            display: inline-block;
+            width: 100%;
+        }
+
+        p {
+            line-height: 1.8;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        /* Googleドライブボタン */
+        .drive-btn {
+            display: inline-block;
+            background-color: #1f8e3d; /* Google Driveっぽい緑色 */
+            color: white;
+            text-decoration: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 18px;
+            margin: 20px 0 40px;
+            box-shadow: 0 4px 10px rgba(31, 142, 61, 0.3);
+            transition: transform 0.2s, background-color 0.2s;
+        }
+        .drive-btn:hover {
+            transform: scale(1.05);
+            background-color: #187030;
+        }
+        .drive-icon {
+            margin-right: 8px;
+            font-size: 1.2em;
+            vertical-align: middle;
+        }
+
+        /* 動画エリア */
+        .video-section {
+            background: #fff8f0;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid #ffe6cc;
+            margin-top: 20px;
+        }
+        .video-title {
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 15px;
+            display: block;
+            font-size: 18px;
+        }
+        video {
+            width: 100%;
+            max-width: 600px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            background: #000;
+        }
+
+        @media (max-width: 820px) {
+            .top-index .menu { gap: 6px; padding: 6px; }
+            .top-index a { font-size: 12px; padding: 6px 8px; }
+            h1 { font-size: 22px; }
+            .card { padding: 18px; }
+            .drive-btn { width: 80%; font-size: 16px; padding: 15px; }
+        }
+    </style>
 </head>
 <body>
-		<style>
-			/* Top index nav — orange palette */
-			.top-index{background:#fff4e6;padding:8px 12px;border-bottom:2px solid #ffd8b3;position:sticky;top:0;z-index:999}
-			.top-index .menu{max-width:980px;margin:0 auto;display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:center}
-			.top-index a{display:inline-block;padding:6px 10px;border-radius:8px;text-decoration:none;color:#7a3b00;background:rgba(255,242,230,0.8);font-weight:700}
-			.top-index a.home{background:#ff7a00;color:#fff}
-			.top-index a:hover{transform:translateY(-2px);box-shadow:0 6px 12px rgba(255,138,0,0.12)}
+    <nav class="top-index">
+        <div class="menu">
+            <a href="member2.html">メンバー</a>
+            <a href="plan.html">旅行の計画</a>
+            <a href="awaji.html">淡路島のあれこれ</a>
+            <a href="hotel.html">旅館のあれこれ</a>
+            <a href="thanks.html">旅行の写真</a>
+            <a href="https://mohehehe.github.io/tabi.awaji.family/" class="home">Home</a>
+        </div>
+    </nav>
 
-			/* Responsive */
-			@media (max-width:820px){
-				.top-index .menu{gap:6px;padding:6px}
-				.top-index a{font-size:13px;padding:6px 8px}
-				.message{padding:14px}
-				.message span{font-size:clamp(22px,8vw,48px)}
-			}
+    <div class="wrap">
+        <div class="card">
+            <h1>思い出を共有しよう！</h1>
+           
+            <p>
+                楽しかった旅行の写真や動画は、<br>
+                みんなでここに集めて見返しましょう！
+            </p>
 
-			@media (max-width:420px){
-				.message{padding:12px}
-				.message span{font-size:clamp(18px,10vw,36px)}
-			}
-		</style>
-	<nav class="top-index">
-		<div class="menu">
-			<a href="member2.html">メンバー</a>
-			<a href="plan.html">旅行の計画</a>
-			<a href="awaji.html">淡路島のあれこれ</a>
-			<a href="hotel.html">旅館のあれこれ</a>
-			<a href="thanks.html">旅行の写真</a>
-			<a href="https://mohehehe.github.io/tabi.awaji.family/" class="home">Home</a>
-		</div>
-	</nav>
-	<div class="message">
-		<span>後でまとめます。編集者より</span>
-	</div>
+            <a href="https://drive.google.com/drive/folders/1P8hYVKV0V51aSKvcvflVlWlPpk3iurkT?usp=sharing" target="_blank" class="drive-btn">
+                <span class="drive-icon"></span>写真をアップロードする
+            </a>
+
+            <div class="video-section">
+                <span class="video-title"> やり方がわからない時はこちら</span>
+                <p style="font-size: 14px; margin-bottom: 10px;">
+                    共有フォルダへの写真の乗っけ方を動画で解説します。<br>
+                    再生ボタンを押して見てね
+                </p>
+               
+                <video controls playsinline>
+                    <source src="upload_howto.mp4" type="video/mp4">
+                    <p>動画を再生できません。</p>
+                </video>
+            </div>
+
+            <p style="margin-top: 30px; font-size: 13px; color: #888;">
+                ※Wi-Fi環境でのアップロードをおすすめします。
+            </p>
+        </div>
+    </div>
 </body>
 </html>
-
